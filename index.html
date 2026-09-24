@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Chanu ❤️</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- OPENING SCREEN -->
+<div id="openingScreen">
+
+    <div class="stars"></div>
+
+    <div class="gift">🎁</div>
+
+    <h1>Something Special<br>For You ❤️</h1>
+
+    <p>Are you ready, Chanu?</p>
+
+    <button onclick="openSurprise()">
+        ✨ Open Your Surprise ✨
+    </button>
+
+</div>
+
+
+<!-- MAIN WEBSITE -->
+<div id="mainWebsite">
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="floating-heart">❤️</div>
+        <div class="floating-heart heart2">💖</div>
+        <div class="floating-heart heart3">💕</div>
+
+        <p class="small-title">TODAY IS YOUR SPECIAL DAY</p>
+
+        <h1 class="birthday-title">
+            Happy Birthday
+            <span>Chanu ❤️</span>
+        </h1>
+
+        <p class="subtitle">
+            A little surprise made specially for you ✨
+        </p>
+
+        <button class="music-btn" onclick="toggleMusic()">
+            🎵 Play Birthday Song
+        </button>
+
+        <audio id="birthdaySong" loop>
+            <source src="birthday.mp3" type="audio/mpeg">
+        </audio>
+
+    </section>
+
+
+    <!-- COUNTDOWN -->
+    <section class="countdown-section">
+
+        <h2>🎂 The Countdown Begins</h2>
+
+        <div class="countdown">
+
+            <div class="time-box">
+                <span id="days">00</span>
+                <small>Days</small>
+            </div>
+
+            <div class="time-box">
+                <span id="hours">00</span>
+                <small>Hours</small>
+            </div>
+
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <small>Minutes</small>
+            </div>
+
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <small>Seconds</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MESSAGE -->
+    <section class="message">
+
+        <div class="card">
+
+            <div class="emoji">💌</div>
+
+            <h2>For You, Chanu ❤️</h2>
+
+            <p>
+                Some people enter our lives and make everything
+                a little more beautiful. You are one of those
+                special people. ✨
+            </p>
+
+            <p>
+                May your birthday be filled with happiness,
+                laughter, love and unforgettable memories. 💖
+            </p>
+
+            <h3>Keep smiling always 😊</h3>
+
+        </div>
+
+    </section>
+
+
+    <!-- PHOTO GALLERY -->
+    <section class="gallery-section">
+
+        <h2>📸 Our Beautiful Memories</h2>
+
+        <div class="gallery">
+
+            <div class="memory-card">
+                <img src="Photo/Photo1.jpg">
+                <p>One of those beautiful moments ❤️</p>
+            </div>
+
+            <div class="memory-card">
+                <img src="Photo/Photo2.jpg">
+                <p>Crazy memories 😂</p>
+            </div>
+
+            <div class="memory-card">
+                <img src="Photo/photo 3.jpg">
+                <p>That unforgettable day ✨</p>
+            </div>
+
+            <div class="memory-card">
+                <img src="Photo/photo4.jpg">
+                <p>Always smiling 😊</p>
+            </div>
+
+            <div class="memory-card">
+                <img src="Photo/photo5.jpg">
+                <p>Just us ❤️</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL -->
+    <section class="final">
+
+        <div class="confetti-text">
+            🎉 🎂 🎉
+        </div>
+
+        <h1>Happy Birthday Chanu ❤️</h1>
+
+        <p>
+            May all your dreams come true. ✨
+        </p>
+
+        <p class="big-love">
+            Stay Happy • Stay Beautiful • Stay Amazing 💖
+        </p>
+
+        <button onclick="celebrate()">
+            🎉 Celebrate 🎉
+        </button>
+
+    </section>
+
+</div>
+
+
+<!-- CONFETTI -->
+<canvas id="confetti"></canvas>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

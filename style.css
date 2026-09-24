@@ -1,0 +1,438 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #050509;
+    color: white;
+    overflow-x: hidden;
+}
+
+
+/* OPENING */
+
+#openingScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(circle at top, #4a164f, #090014 45%, #020205);
+
+    transition: 1s;
+}
+
+#openingScreen.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.2);
+}
+
+.gift {
+    font-size: 90px;
+    animation: giftFloat 2s infinite;
+}
+
+#openingScreen h1 {
+    font-size: 32px;
+    margin: 20px;
+    line-height: 1.3;
+}
+
+#openingScreen p {
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+#openingScreen button,
+.final button,
+.music-btn {
+    border: none;
+    padding: 15px 28px;
+    border-radius: 40px;
+
+    background: linear-gradient(45deg, #ff1f6d, #9b35ff);
+
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+
+    box-shadow: 0 0 25px #ff2775;
+
+    cursor: pointer;
+}
+
+@keyframes giftFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(circle at 50% 20%, #63145e, transparent 40%),
+        linear-gradient(#050509, #16051b);
+}
+
+.small-title {
+    letter-spacing: 4px;
+    color: #ff77aa;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.birthday-title {
+    font-size: clamp(45px, 12vw, 90px);
+    line-height: 1;
+
+    animation: titleGlow 2s infinite alternate;
+}
+
+.birthday-title span {
+    display: block;
+
+    background: linear-gradient(
+        90deg,
+        #ff3d81,
+        #ff9bd0,
+        #c65cff
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 10px #ff3478;
+    }
+
+    to {
+        text-shadow:
+            0 0 20px #ff3478,
+            0 0 50px #b82cff;
+    }
+}
+
+.subtitle {
+    color: #ccc;
+    margin: 25px 0;
+}
+
+.music-btn {
+    margin-top: 15px;
+}
+
+
+/* FLOATING HEARTS */
+
+.floating-heart {
+    position: absolute;
+    font-size: 35px;
+
+    animation: floatHeart 5s infinite;
+}
+
+.heart2 {
+    left: 15%;
+    animation-delay: 1s;
+}
+
+.heart3 {
+    right: 15%;
+    animation-delay: 2s;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-400px);
+        opacity: 0;
+    }
+}
+
+
+/* COUNTDOWN */
+
+.countdown-section {
+    padding: 80px 20px;
+
+    text-align: center;
+
+    background: #09090f;
+}
+
+.countdown-section h2 {
+    margin-bottom: 35px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    width: 75px;
+    height: 90px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        145deg,
+        #171723,
+        #090910
+    );
+
+    border: 1px solid #333;
+
+    box-shadow: 0 0 20px rgba(255, 45, 120, .2);
+}
+
+.time-box span {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff4c91;
+}
+
+.time-box small {
+    color: #aaa;
+}
+
+
+/* MESSAGE */
+
+.message {
+    padding: 80px 20px;
+
+    display: flex;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle, #28102f, #050509);
+}
+
+.card {
+    max-width: 600px;
+
+    padding: 40px 25px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.06);
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 0 40px rgba(255,40,130,.15);
+}
+
+.emoji {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    margin-bottom: 20px;
+}
+
+.card p {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #ff6fa5;
+}
+
+
+/* GALLERY */
+
+.gallery-section {
+    padding: 80px 15px;
+
+    text-align: center;
+
+    background: #050509;
+}
+
+.gallery-section h2 {
+    margin-bottom: 35px;
+}
+
+.gallery {
+    max-width: 900px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+    gap: 15px;
+}
+
+.memory-card {
+    background: #111118;
+
+    padding: 8px;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition: .3s;
+
+    border: 1px solid #252530;
+}
+
+.memory-card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.memory-card img {
+    width: 100%;
+    height: 210px;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+}
+
+.memory-card p {
+    padding: 12px 5px;
+    color: #ddd;
+    font-size: 14px;
+}
+
+
+/* FINAL */
+
+.final {
+    min-height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(circle at center, #65134d, #080009);
+}
+
+.final h1 {
+    font-size: clamp(38px, 10vw, 75px);
+
+    background: linear-gradient(
+        90deg,
+        #ff4b91,
+        #ffd0e2,
+        #b94dff
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: titleGlow 2s infinite alternate;
+}
+
+.final p {
+    color: #ddd;
+    margin: 15px;
+}
+
+.big-love {
+    font-size: 18px;
+}
+
+.final button {
+    margin-top: 20px;
+}
+
+
+/* CONFETTI */
+
+#confetti {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 10000;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    #openingScreen h1 {
+        font-size: 28px;
+    }
+
+    .birthday-title {
+        font-size: 48px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .memory-card img {
+        height: 190px;
+    }
+}
