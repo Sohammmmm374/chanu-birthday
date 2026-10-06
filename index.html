@@ -1,193 +1,545 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Happy Birthday Chanu ❤️</title>
+    <title>Chanu | Your Special Day ❤️</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- OPENING SCREEN -->
-<div id="openingScreen">
+    <!-- BACKGROUND PARTICLES -->
+    <div id="particles"></div>
 
-    <div class="stars"></div>
+    <!-- MUSIC -->
+    <audio id="music" loop>
+        <source src="birthday.mp3" type="audio/mpeg">
+    </audio>
 
-    <div class="gift">🎁</div>
-
-    <h1>Something Special<br>For You ❤️</h1>
-
-    <p>Are you ready, Chanu?</p>
-
-    <button onclick="openSurprise()">
-        ✨ Open Your Surprise ✨
+    <button class="music-button" onclick="toggleMusic()">
+        🎵 <span id="musicText">Music</span>
     </button>
 
-</div>
 
+    <!-- ========================= -->
+    <!-- NETFLIX INTRO -->
+    <!-- ========================= -->
 
-<!-- MAIN WEBSITE -->
-<div id="mainWebsite">
+    <section id="intro" class="intro">
 
-    <!-- HERO -->
-    <section class="hero">
+        <div class="netflix-logo">N</div>
 
-        <div class="floating-heart">❤️</div>
-        <div class="floating-heart heart2">💖</div>
-        <div class="floating-heart heart3">💕</div>
+        <p class="intro-small">
+            A SPECIAL PRESENTATION
+        </p>
 
-        <p class="small-title">TODAY IS YOUR SPECIAL DAY</p>
-
-        <h1 class="birthday-title">
-            Happy Birthday
-            <span>Chanu ❤️</span>
+        <h1>
+            SOMETHING<br>
+            <span>BEAUTIFUL</span><br>
+            IS WAITING...
         </h1>
 
-        <p class="subtitle">
-            A little surprise made specially for you ✨
-        </p>
-
-        <button class="music-btn" onclick="toggleMusic()">
-            🎵 Play Birthday Song
+        <button class="watch-btn" onclick="startExperience()">
+            ▶ START SURPRISE
         </button>
 
-        <audio id="birthdaySong" loop>
-            <source src="birthday.mp3" type="audio/mpeg">
-        </audio>
+        <p class="intro-bottom">
+            Made specially for Chanu ❤️
+        </p>
 
     </section>
 
 
-    <!-- COUNTDOWN -->
-    <section class="countdown-section">
+    <!-- ========================= -->
+    <!-- PASSWORD SCREEN -->
+    <!-- ========================= -->
 
-        <h2>🎂 The Countdown Begins</h2>
+    <section id="passwordScreen" class="password-screen hidden">
 
-        <div class="countdown">
+        <div class="password-box">
 
-            <div class="time-box">
-                <span id="days">00</span>
-                <small>Days</small>
-            </div>
+            <div class="lock">🔐</div>
 
-            <div class="time-box">
-                <span id="hours">00</span>
-                <small>Hours</small>
-            </div>
-
-            <div class="time-box">
-                <span id="minutes">00</span>
-                <small>Minutes</small>
-            </div>
-
-            <div class="time-box">
-                <span id="seconds">00</span>
-                <small>Seconds</small>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MESSAGE -->
-    <section class="message">
-
-        <div class="card">
-
-            <div class="emoji">💌</div>
-
-            <h2>For You, Chanu ❤️</h2>
+            <h2>Restricted Access</h2>
 
             <p>
-                Some people enter our lives and make everything
-                a little more beautiful. You are one of those
-                special people. ✨
+                Only Chanu can open this surprise.
             </p>
 
-            <p>
-                May your birthday be filled with happiness,
-                laughter, love and unforgettable memories. 💖
-            </p>
+            <input
+                type="password"
+                id="passwordInput"
+                placeholder="Enter secret password"
+            >
 
-            <h3>Keep smiling always 😊</h3>
+            <button onclick="checkPassword()">
+                Unlock ❤️
+            </button>
+
+            <p id="passwordMessage"></p>
+
+            <small>
+                Hint: Your nickname 😉
+            </small>
 
         </div>
 
     </section>
 
 
-    <!-- PHOTO GALLERY -->
-    <section class="gallery-section">
+    <!-- ========================= -->
+    <!-- MAIN WEBSITE -->
+    <!-- ========================= -->
 
-        <h2>📸 Our Beautiful Memories</h2>
+    <main id="main" class="hidden">
 
-        <div class="gallery">
 
-            <div class="memory-card">
-                <img src="Photo/Photo1.jpg">
-                <p>One of those beautiful moments ❤️</p>
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+
+                <p class="netflix-tag">
+                    A BESTIE ORIGINAL
+                </p>
+
+                <h1>
+                    HAPPY<br>
+                    <span>BIRTHDAY</span>
+                </h1>
+
+                <h2>CHanu ❤️</h2>
+
+                <p class="typing" id="typingText"></p>
+
+                <div class="hero-buttons">
+
+                    <button onclick="scrollToSection('memories')">
+                        ▶ Watch Memories
+                    </button>
+
+                    <button
+                        class="more-info"
+                        onclick="scrollToSection('story')">
+                        ⓘ Our Story
+                    </button>
+
+                </div>
+
             </div>
 
-            <div class="memory-card">
-                <img src="Photo/Photo2.jpg">
-                <p>Crazy memories 😂</p>
+        </section>
+
+
+        <!-- COUNTDOWN -->
+
+        <section class="countdown-section">
+
+            <p class="section-label">
+                COUNTING DOWN TO YOUR SPECIAL DAY
+            </p>
+
+            <h2>🎂 Your Birthday</h2>
+
+            <div class="countdown">
+
+                <div>
+                    <span id="days">00</span>
+                    <small>DAYS</small>
+                </div>
+
+                <div>
+                    <span id="hours">00</span>
+                    <small>HOURS</small>
+                </div>
+
+                <div>
+                    <span id="minutes">00</span>
+                    <small>MINUTES</small>
+                </div>
+
+                <div>
+                    <span id="seconds">00</span>
+                    <small>SECONDS</small>
+                </div>
+
             </div>
 
-            <div class="memory-card">
-                <img src="Photo/photo 3.jpg">
-                <p>That unforgettable day ✨</p>
+        </section>
+
+
+        <!-- MEMORIES -->
+
+        <section id="memories" class="section">
+
+            <div class="section-heading">
+
+                <span>CHAPTER 01</span>
+
+                <h2>Our Memories 📸</h2>
+
+                <p>
+                    Every picture has a story.
+                </p>
+
             </div>
 
-            <div class="memory-card">
-                <img src="Photo/photo4.jpg">
-                <p>Always smiling 😊</p>
+
+            <div class="instagram-profile">
+
+                <div class="profile-pic">
+                    C
+                </div>
+
+                <div>
+                    <strong>chanu ❤️</strong>
+                    <p>Best memories • Best person</p>
+                </div>
+
             </div>
 
-            <div class="memory-card">
-                <img src="Photo/photo5.jpg">
-                <p>Just us ❤️</p>
+
+            <div class="gallery">
+
+                <div class="memory-card large">
+                    <img src="photos/photo1.jpg">
+                    <div class="memory-text">
+                        <span>01</span>
+                        <p>One of those moments ❤️</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photos/photo2.jpg">
+                    <div class="memory-text">
+                        <span>02</span>
+                        <p>Crazy memories 😂</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photos/photo3.jpg">
+                    <div class="memory-text">
+                        <span>03</span>
+                        <p>That unforgettable day ✨</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photos/photo4.jpg">
+                    <div class="memory-text">
+                        <span>04</span>
+                        <p>Always smiling 🫶</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photos/photo5.jpg">
+                    <div class="memory-text">
+                        <span>05</span>
+                        <p>Just us ❤️</p>
+                    </div>
+                </div>
+
+                <div class="memory-card">
+                    <img src="photos/photo6.jpg">
+                    <div class="memory-text">
+                        <span>06</span>
+                        <p>A memory forever ✨</p>
+                    </div>
+                </div>
+
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- FINAL -->
-    <section class="final">
+        <!-- OUR STORY -->
 
-        <div class="confetti-text">
-            🎉 🎂 🎉
-        </div>
+        <section id="story" class="story-section">
 
-        <h1>Happy Birthday Chanu ❤️</h1>
+            <div class="section-heading">
 
+                <span>CHAPTER 02</span>
+
+                <h2>Our Story 🫶</h2>
+
+                <p>
+                    Some friendships become memories.
+                    Some become a part of your life.
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot">
+                        01
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <small>THE BEGINNING</small>
+
+                        <h3>When We Met</h3>
+
+                        <p>
+                            This is where our story started.
+                            An ordinary moment that eventually
+                            became something really special.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot">
+                        02
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <small>THE CRAZY PART</small>
+
+                        <h3>Too Many Memories 😂</h3>
+
+                        <p>
+                            From random conversations to
+                            completely crazy moments,
+                            somehow there was never a boring day.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot">
+                        03
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <small>THE BEST PART</small>
+
+                        <h3>Having You As My Bestie</h3>
+
+                        <p>
+                            Through everything, one thing stayed
+                            constant — our friendship.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot">
+                        04
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <small>TO BE CONTINUED...</small>
+
+                        <h3>More Memories Ahead ❤️</h3>
+
+                        <p>
+                            This story isn't ending here.
+                            There are still hundreds of memories
+                            waiting to be created.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- WHY SPECIAL -->
+
+        <section class="special-section">
+
+            <div class="section-heading">
+
+                <span>CHAPTER 03</span>
+
+                <h2>Why You're Special ❤️</h2>
+
+            </div>
+
+
+            <div class="special-grid">
+
+                <div class="special-card">
+                    <div>😊</div>
+                    <h3>Your Smile</h3>
+                    <p>
+                        Somehow your smile makes everything
+                        feel a little better.
+                    </p>
+                </div>
+
+                <div class="special-card">
+                    <div>😂</div>
+                    <h3>Your Craziness</h3>
+                    <p>
+                        Life would definitely be less fun
+                        without your crazy side.
+                    </p>
+                </div>
+
+                <div class="special-card">
+                    <div>🫶</div>
+                    <h3>Your Heart</h3>
+                    <p>
+                        You care about people in a way
+                        that makes you genuinely special.
+                    </p>
+                </div>
+
+                <div class="special-card">
+                    <div>✨</div>
+                    <h3>Simply You</h3>
+                    <p>
+                        There is only one Chanu.
+                        And that's more than enough.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MESSAGE -->
+
+        <section class="message-section">
+
+            <div class="message-container">
+
+                <span>FINAL CHAPTER</span>
+
+                <h2>
+                    A Message<br>
+                    <strong>For You</strong>
+                </h2>
+
+                <div class="letter">
+
+                    <p>
+                        Dear Chanu,
+                    </p>
+
+                    <p>
+                        Today isn't just another birthday.
+                        It's another chapter of your life,
+                        and I hope this chapter becomes one
+                        of your most beautiful ones.
+                    </p>
+
+                    <p>
+                        Thank you for the laughs, the random
+                        conversations, the unforgettable moments,
+                        and simply for being you.
+                    </p>
+
+                    <p>
+                        I hope you achieve everything you dream of.
+                        I hope you always have reasons to smile,
+                        and I hope life gives you countless
+                        beautiful memories.
+                    </p>
+
+                    <p class="highlight">
+                        Happy Birthday to one of the most
+                        special people in my life. ❤️
+                    </p>
+
+                    <p>
+                        Stay happy. Stay crazy.
+                        And most importantly...
+                        stay YOU.
+                    </p>
+
+                    <p class="signature">
+                        — Your Bestie 🫶
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL -->
+
+        <section class="final-section">
+
+            <div class="final-content">
+
+                <div class="final-heart">
+                    ❤️
+                </div>
+
+                <p>
+                    THE END... OR MAYBE JUST THE BEGINNING
+                </p>
+
+                <h1>
+                    Happy Birthday,<br>
+                    Chanu! 🎂
+                </h1>
+
+                <p class="final-subtitle">
+                    More laughs. More memories.
+                    More adventures. More us. ❤️
+                </p>
+
+                <button onclick="celebrate()">
+                    🎉 CELEBRATE
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
         <p>
-            May all your dreams come true. ✨
+            Made with ❤️ for Chanu
         </p>
 
-        <p class="big-love">
-            Stay Happy • Stay Beautiful • Stay Amazing 💖
-        </p>
-
-        <button onclick="celebrate()">
-            🎉 Celebrate 🎉
-        </button>
-
-    </section>
-
-</div>
+        <small>
+            A Bestie Original © 2026
+        </small>
+    </footer>
 
 
-<!-- CONFETTI -->
-<canvas id="confetti"></canvas>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
