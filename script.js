@@ -18,7 +18,7 @@ const SECRET_PASSWORD = "chanu";
 */
 
 const birthdayDate =
-    new Date("October 25, 2026 00:00:00");
+    new Date("October 13, 2026 00:00:00");
 
 
 /* =========================
