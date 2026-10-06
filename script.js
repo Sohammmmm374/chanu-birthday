@@ -1,127 +1,56 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* =========================
+   SETTINGS
+========================= */
 
-html {
-    scroll-behavior: smooth;
-}
+// CHANGE THIS PASSWORD
+const SECRET_PASSWORD = "chanu";
 
-body {
-    background: #080808;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
-}
 
-button {
-    font-family: inherit;
-    cursor: pointer;
-}
+/*
+   CHANGE THIS DATE
+
+   Example:
+   If birthday is 25 October 2026:
+
+   new Date("October 25, 2026 00:00:00")
+
+   Change the date below to Chanu's actual birthday.
+*/
+
+const birthdayDate =
+    new Date("October 25, 2026 00:00:00");
 
 
 /* =========================
-   INTRO
+   ELEMENTS
 ========================= */
 
-.intro {
-    height: 100vh;
+const intro =
+    document.getElementById("intro");
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+const passwordScreen =
+    document.getElementById("passwordScreen");
 
-    text-align: center;
+const main =
+    document.getElementById("main");
 
-    background:
-        radial-gradient(circle at center,
-        #3b1027 0%,
-        #14070d 45%,
-        #050505 100%);
+const music =
+    document.getElementById("music");
 
-    position: relative;
-}
-
-.netflix-logo {
-    font-size: 100px;
-    font-weight: 900;
-    color: #e50914;
-
-    margin-bottom: 20px;
-
-    text-shadow:
-        0 0 40px rgba(229,9,20,0.5);
-}
-
-.intro-small {
-    letter-spacing: 6px;
-    color: #aaa;
-    font-size: 12px;
-    margin-bottom: 20px;
-}
-
-.intro h1 {
-    font-size: clamp(45px, 9vw, 100px);
-    line-height: 0.9;
-    letter-spacing: -3px;
-}
-
-.intro h1 span {
-    color: #e50914;
-}
-
-.watch-btn {
-    margin-top: 45px;
-
-    border: none;
-    padding: 16px 30px;
-
-    background: white;
-    color: black;
-
-    border-radius: 5px;
-
-    font-size: 16px;
-    font-weight: bold;
-
-    transition: 0.3s;
-}
-
-.watch-btn:hover {
-    background: #e50914;
-    color: white;
-    transform: scale(1.05);
-}
-
-.intro-bottom {
-    position: absolute;
-    bottom: 30px;
-    color: #777;
-}
+const musicText =
+    document.getElementById("musicText");
 
 
 /* =========================
-   MUSIC
+   START EXPERIENCE
 ========================= */
 
-.music-button {
-    position: fixed;
-    right: 20px;
-    top: 20px;
+function startExperience() {
 
-    z-index: 5000;
+    intro.classList.add("hidden");
 
-    padding: 10px 16px;
+    passwordScreen.classList.remove("hidden");
 
-    border: 1px solid #444;
-    border-radius: 30px;
-
-    background: rgba(0,0,0,0.7);
-    color: white;
-
-    backdrop-filter: blur(10px);
 }
 
 
@@ -129,191 +58,119 @@ button {
    PASSWORD
 ========================= */
 
-.password-screen {
-    min-height: 100vh;
+function checkPassword() {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    const input =
+        document.getElementById("passwordInput");
 
-    background: #050505;
+    const message =
+        document.getElementById("passwordMessage");
+
+    if (
+        input.value.trim().toLowerCase()
+        === SECRET_PASSWORD.toLowerCase()
+    ) {
+
+        passwordScreen.classList.add("hidden");
+
+        main.classList.remove("hidden");
+
+        startWebsite();
+
+    } else {
+
+        message.innerHTML =
+            "Wrong password 😜 Try again!";
+
+        input.value = "";
+
+    }
+
 }
 
-.password-box {
-    width: min(90%, 420px);
 
-    padding: 45px;
+/* ENTER KEY PASSWORD */
 
-    text-align: center;
+document
+    .getElementById("passwordInput")
+    .addEventListener("keydown", function(event) {
 
-    background: #151515;
+        if (event.key === "Enter") {
+            checkPassword();
+        }
 
-    border-radius: 10px;
+    });
 
-    border: 1px solid #333;
 
-    box-shadow: 0 20px 80px rgba(229,9,20,0.15);
-}
+/* =========================
+   WEBSITE START
+========================= */
 
-.lock {
-    font-size: 55px;
-    margin-bottom: 20px;
-}
+function startWebsite() {
 
-.password-box h2 {
-    margin-bottom: 10px;
-}
+    typeText();
 
-.password-box p {
-    color: #aaa;
-    margin-bottom: 25px;
-}
+    createParticles();
 
-.password-box input {
-    width: 100%;
+    music.play()
+        .then(() => {
+            musicText.innerHTML = "ON";
+        })
+        .catch(() => {
+            musicText.innerHTML = "Music";
+        });
 
-    padding: 15px;
-
-    background: #222;
-    color: white;
-
-    border: 1px solid #444;
-    border-radius: 5px;
-
-    outline: none;
-
-    margin-bottom: 15px;
-}
-
-.password-box button {
-    width: 100%;
-
-    padding: 14px;
-
-    background: #e50914;
-    color: white;
-
-    border: none;
-    border-radius: 5px;
-
-    font-weight: bold;
-}
-
-#passwordMessage {
-    margin-top: 15px;
-    color: #e50914;
-}
-
-.hidden {
-    display: none !important;
 }
 
 
 /* =========================
-   HERO
+   TYPING EFFECT
 ========================= */
 
-.hero {
-    height: 90vh;
+const typingMessage =
+    "Another year, another chapter, and another reason to celebrate you. ❤️";
 
-    position: relative;
+let typingIndex = 0;
 
-    display: flex;
-    align-items: center;
+function typeText() {
 
-    background:
-        linear-gradient(90deg,
-        rgba(0,0,0,0.95) 0%,
-        rgba(0,0,0,0.7) 45%,
-        rgba(0,0,0,0.2) 100%),
-        radial-gradient(circle at 80% 50%,
-        #65142c,
-        #10070a 60%);
+    const element =
+        document.getElementById("typingText");
 
-    overflow: hidden;
+    if (typingIndex < typingMessage.length) {
+
+        element.innerHTML +=
+            typingMessage.charAt(typingIndex);
+
+        typingIndex++;
+
+        setTimeout(typeText, 45);
+
+    }
+
 }
 
-.hero::after {
-    content: "";
 
-    position: absolute;
+/* =========================
+   MUSIC
+========================= */
 
-    inset: 0;
+function toggleMusic() {
 
-    background:
-        linear-gradient(0deg,
-        #080808,
-        transparent 25%);
+    if (music.paused) {
 
-    pointer-events: none;
-}
+        music.play();
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+        musicText.innerHTML = "ON";
 
-    padding: 8%;
+    } else {
 
-    max-width: 750px;
-}
+        music.pause();
 
-.netflix-tag {
-    color: #e50914;
-    font-weight: bold;
-    letter-spacing: 4px;
+        musicText.innerHTML = "OFF";
 
-    margin-bottom: 20px;
-}
+    }
 
-.hero h1 {
-    font-size: clamp(60px, 9vw, 120px);
-
-    line-height: 0.82;
-
-    letter-spacing: -5px;
-}
-
-.hero h1 span {
-    color: #e50914;
-}
-
-.hero h2 {
-    margin-top: 25px;
-    font-size: 35px;
-}
-
-.typing {
-    color: #ccc;
-    font-size: 18px;
-    margin-top: 20px;
-    min-height: 25px;
-}
-
-.hero-buttons {
-    margin-top: 30px;
-
-    display: flex;
-    gap: 12px;
-}
-
-.hero-buttons button {
-    border: none;
-
-    padding: 13px 22px;
-
-    border-radius: 4px;
-
-    font-weight: bold;
-}
-
-.hero-buttons button:first-child {
-    background: white;
-    color: black;
-}
-
-.more-info {
-    background: rgba(100,100,100,0.5);
-    color: white;
 }
 
 
@@ -321,466 +178,90 @@ button {
    COUNTDOWN
 ========================= */
 
-.countdown-section {
-    padding: 80px 20px;
+function updateCountdown() {
 
-    text-align: center;
+    const now =
+        new Date().getTime();
 
-    background: #0d0d0d;
-}
-
-.section-label {
-    color: #e50914;
-
-    font-size: 12px;
-    font-weight: bold;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 15px;
-}
-
-.countdown-section h2 {
-    font-size: 40px;
-    margin-bottom: 40px;
-}
-
-.countdown {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.countdown div {
-    width: 110px;
-
-    padding: 20px 10px;
-
-    background: #171717;
-
-    border: 1px solid #292929;
-
-    border-radius: 5px;
-}
-
-.countdown span {
-    display: block;
-
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.countdown small {
-    color: #888;
-    font-size: 10px;
-}
+    const distance =
+        birthdayDate.getTime() - now;
 
 
-/* =========================
-   SECTIONS
-========================= */
+    if (distance <= 0) {
 
-.section {
-    padding: 100px 7%;
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
 
-    background: #080808;
-}
+        return;
 
-.section-heading {
-    margin-bottom: 45px;
-}
-
-.section-heading span {
-    color: #e50914;
-
-    font-size: 12px;
-    letter-spacing: 4px;
-    font-weight: bold;
-}
-
-.section-heading h2 {
-    font-size: clamp(35px, 5vw, 60px);
-
-    margin: 10px 0;
-}
-
-.section-heading p {
-    color: #888;
-}
+    }
 
 
-/* =========================
-   INSTAGRAM
-========================= */
-
-.instagram-profile {
-    display: flex;
-    align-items: center;
-
-    gap: 15px;
-
-    margin-bottom: 30px;
-}
-
-.profile-pic {
-    width: 55px;
-    height: 55px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-
-    background: linear-gradient(135deg,#e50914,#ff4d7d);
-
-    font-size: 25px;
-    font-weight: bold;
-}
-
-.instagram-profile p {
-    color: #777;
-    margin-top: 5px;
-}
-
-
-/* =========================
-   GALLERY
-========================= */
-
-.gallery {
-    display: grid;
-
-    grid-template-columns: repeat(3,1fr);
-
-    gap: 12px;
-
-    max-width: 1200px;
-}
-
-.memory-card {
-    position: relative;
-
-    height: 360px;
-
-    overflow: hidden;
-
-    background: #111;
-}
-
-.memory-card.large {
-    grid-row: span 2;
-    height: 732px;
-}
-
-.memory-card img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    transition: 0.6s;
-}
-
-.memory-card:hover img {
-    transform: scale(1.08);
-}
-
-.memory-card::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            transparent 40%,
-            rgba(0,0,0,0.9)
+    const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
         );
-}
 
-.memory-text {
-    position: absolute;
-
-    bottom: 20px;
-    left: 20px;
-
-    z-index: 2;
-}
-
-.memory-text span {
-    color: #e50914;
-    font-weight: bold;
-}
-
-.memory-text p {
-    margin-top: 6px;
-}
-
-
-/* =========================
-   STORY
-========================= */
-
-.story-section {
-    padding: 110px 7%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #111,
-            #080808
+    const hours =
+        Math.floor(
+            (distance %
+                (1000 * 60 * 60 * 24))
+            /
+            (1000 * 60 * 60)
         );
-}
 
-.timeline {
-    max-width: 850px;
-
-    margin: auto;
-
-    border-left: 2px solid #333;
-}
-
-.timeline-item {
-    position: relative;
-
-    padding: 0 0 70px 45px;
-}
-
-.timeline-dot {
-    position: absolute;
-
-    left: -18px;
-
-    width: 34px;
-    height: 34px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-
-    background: #e50914;
-
-    font-size: 11px;
-    font-weight: bold;
-}
-
-.timeline-content small {
-    color: #e50914;
-    letter-spacing: 3px;
-}
-
-.timeline-content h3 {
-    font-size: 30px;
-    margin: 10px 0;
-}
-
-.timeline-content p {
-    color: #888;
-    line-height: 1.8;
-}
-
-
-/* =========================
-   SPECIAL
-========================= */
-
-.special-section {
-    padding: 100px 7%;
-
-    background: #0d0d0d;
-}
-
-.special-grid {
-    display: grid;
-
-    grid-template-columns: repeat(4,1fr);
-
-    gap: 15px;
-}
-
-.special-card {
-    background: #171717;
-
-    padding: 35px 25px;
-
-    border: 1px solid #252525;
-
-    transition: 0.3s;
-}
-
-.special-card:hover {
-    transform: translateY(-8px);
-
-    border-color: #e50914;
-}
-
-.special-card div {
-    font-size: 45px;
-}
-
-.special-card h3 {
-    margin: 20px 0 10px;
-}
-
-.special-card p {
-    color: #888;
-    line-height: 1.6;
-}
-
-
-/* =========================
-   MESSAGE
-========================= */
-
-.message-section {
-    padding: 120px 20px;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #30101c,
-            #080808 65%
+    const minutes =
+        Math.floor(
+            (distance %
+                (1000 * 60 * 60))
+            /
+            (1000 * 60)
         );
-}
 
-.message-container {
-    max-width: 850px;
-    margin: auto;
-}
-
-.message-container > span {
-    color: #e50914;
-    letter-spacing: 4px;
-    font-size: 12px;
-}
-
-.message-container h2 {
-    font-size: clamp(45px, 7vw, 80px);
-
-    margin: 15px 0 45px;
-
-    line-height: 0.9;
-}
-
-.message-container h2 strong {
-    color: #e50914;
-}
-
-.letter {
-    color: #ccc;
-
-    font-size: 19px;
-
-    line-height: 2;
-}
-
-.letter p {
-    margin-bottom: 22px;
-}
-
-.highlight {
-    color: white;
-
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.signature {
-    color: #e50914;
-    font-weight: bold;
-}
-
-
-/* =========================
-   FINAL
-========================= */
-
-.final-section {
-    min-height: 90vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    padding: 50px 20px;
-
-    background:
-        radial-gradient(
-            circle,
-            #4a0e22,
-            #080808 65%
+    const seconds =
+        Math.floor(
+            (distance %
+                (1000 * 60))
+            /
+            1000
         );
+
+
+    document.getElementById("days").innerHTML =
+        String(days).padStart(2, "0");
+
+    document.getElementById("hours").innerHTML =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").innerHTML =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").innerHTML =
+        String(seconds).padStart(2, "0");
+
 }
 
-.final-heart {
-    font-size: 90px;
+setInterval(updateCountdown, 1000);
 
-    animation: heartbeat 1s infinite;
-}
-
-.final-content > p:first-of-type {
-    color: #e50914;
-
-    letter-spacing: 4px;
-
-    font-size: 11px;
-
-    margin: 25px 0;
-}
-
-.final-content h1 {
-    font-size: clamp(45px, 8vw, 90px);
-
-    line-height: 0.95;
-}
-
-.final-subtitle {
-    color: #aaa;
-
-    font-size: 18px;
-
-    margin: 30px auto;
-
-    max-width: 500px;
-}
-
-.final-content button {
-    padding: 15px 30px;
-
-    background: #e50914;
-    color: white;
-
-    border: none;
-
-    font-weight: bold;
-
-    border-radius: 4px;
-}
+updateCountdown();
 
 
 /* =========================
-   FOOTER
+   SCROLL
 ========================= */
 
-footer {
-    padding: 35px;
+function scrollToSection(id) {
 
-    text-align: center;
+    const section =
+        document.getElementById(id);
 
-    background: #050505;
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
 
-    color: #777;
-}
-
-footer small {
-    display: block;
-    margin-top: 8px;
 }
 
 
@@ -788,178 +269,114 @@ footer small {
    PARTICLES
 ========================= */
 
-.particle {
-    position: fixed;
+function createParticles() {
 
-    pointer-events: none;
+    setInterval(() => {
 
-    color: #e50914;
+        const particle =
+            document.createElement("div");
 
-    opacity: 0.5;
+        particle.className = "particle";
 
-    z-index: 1;
+        particle.innerHTML =
+            Math.random() > 0.5
+                ? "❤️"
+                : "✦";
 
-    animation: float 7s linear forwards;
-}
+        particle.style.left =
+            Math.random() * 100 + "vw";
 
+        particle.style.fontSize =
+            (10 + Math.random() * 20) + "px";
 
-/* =========================
-   CONFETTI
-========================= */
+        particle.style.animationDuration =
+            (5 + Math.random() * 5) + "s";
 
-.confetti {
-    position: fixed;
-
-    top: -20px;
-
-    z-index: 9999;
-
-    font-size: 25px;
-
-    animation: fall 4s linear forwards;
-
-    pointer-events: none;
-}
+        document.body.appendChild(particle);
 
 
-/* =========================
-   ANIMATIONS
-========================= */
+        setTimeout(() => {
+            particle.remove();
+        }, 10000);
 
-@keyframes heartbeat {
-
-    0%,100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.2);
-    }
-
-}
-
-@keyframes float {
-
-    from {
-        transform: translateY(100vh) rotate(0);
-        opacity: 0;
-    }
-
-    20% {
-        opacity: 0.5;
-    }
-
-    to {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-    }
-
-}
-
-@keyframes fall {
-
-    from {
-        transform: translateY(0) rotate(0);
-    }
-
-    to {
-        transform: translateY(110vh) rotate(720deg);
-    }
+    }, 600);
 
 }
 
 
 /* =========================
-   MOBILE
+   CELEBRATION
 ========================= */
 
-@media(max-width: 800px) {
+function celebrate() {
 
-    .hero-content {
-        padding: 30px;
+    const items = [
+        "🎉",
+        "🎊",
+        "❤️",
+        "💖",
+        "✨",
+        "🥳",
+        "🎂",
+        "💕"
+    ];
+
+
+    for (let i = 0; i < 100; i++) {
+
+        const confetti =
+            document.createElement("div");
+
+        confetti.className =
+            "confetti";
+
+        confetti.innerHTML =
+            items[
+                Math.floor(
+                    Math.random() *
+                    items.length
+                )
+            ];
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+        confetti.style.animationDuration =
+            (2 + Math.random() * 4) + "s";
+
+        confetti.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+
+        document.body.appendChild(confetti);
+
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 7000);
+
     }
 
-    .hero h1 {
-        font-size: 65px;
-    }
-
-    .countdown {
-        gap: 7px;
-    }
-
-    .countdown div {
-        width: 75px;
-        padding: 15px 5px;
-    }
-
-    .countdown span {
-        font-size: 28px;
-    }
-
-    .gallery {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .memory-card {
-        height: 250px;
-    }
-
-    .memory-card.large {
-        height: 512px;
-    }
-
-    .special-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    music.play().catch(() => {});
 
 }
 
-@media(max-width: 500px) {
 
-    .intro h1 {
-        font-size: 55px;
-    }
+/* =========================
+   CLICK ENTER ON PASSWORD
+========================= */
 
-    .hero h1 {
-        font-size: 55px;
-    }
+document.addEventListener(
+    "click",
+    function(event) {
 
-    .hero h2 {
-        font-size: 28px;
-    }
+        if (
+            event.target.classList.contains("memory-card")
+        ) {
 
-    .hero-buttons {
-        flex-direction: column;
-        width: 200px;
-    }
-
-    .countdown-section h2 {
-        font-size: 30px;
-    }
-
-    .countdown span {
-        font-size: 22px;
-    }
-
-    .countdown small {
-        font-size: 8px;
-    }
-
-    .gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .memory-card,
-    .memory-card.large {
-        height: 400px;
-    }
-
-    .special-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .letter {
-        font-size: 17px;
-    }
+            event.target.classList.toggle("active");
 
         }
+
+    }
+);
