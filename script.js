@@ -49,7 +49,7 @@ function toggleMusic() {
 */
 
 const birthdayDate =
-    new Date("October 25, 2026 00:00:00").getTime();
+    new Date("October 13, 2026 00:00:00").getTime();
 
 
 function updateCountdown() {
