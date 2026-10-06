@@ -9,88 +9,24 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #050509;
+    background: #080808;
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
 
-
-/* OPENING */
-
-#openingScreen {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    background:
-        radial-gradient(circle at top, #4a164f, #090014 45%, #020205);
-
-    transition: 1s;
-}
-
-#openingScreen.hide {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.2);
-}
-
-.gift {
-    font-size: 90px;
-    animation: giftFloat 2s infinite;
-}
-
-#openingScreen h1 {
-    font-size: 32px;
-    margin: 20px;
-    line-height: 1.3;
-}
-
-#openingScreen p {
-    color: #ddd;
-    margin-bottom: 25px;
-}
-
-#openingScreen button,
-.final button,
-.music-btn {
-    border: none;
-    padding: 15px 28px;
-    border-radius: 40px;
-
-    background: linear-gradient(45deg, #ff1f6d, #9b35ff);
-
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-
-    box-shadow: 0 0 25px #ff2775;
-
+button {
+    font-family: inherit;
     cursor: pointer;
 }
 
-@keyframes giftFloat {
-    0%,100% {
-        transform: translateY(0);
-    }
 
-    50% {
-        transform: translateY(-20px) rotate(5deg);
-    }
-}
+/* =========================
+   INTRO
+========================= */
 
-
-/* HERO */
-
-.hero {
-    min-height: 100vh;
+.intro {
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -99,340 +35,931 @@ body {
 
     text-align: center;
 
-    padding: 30px;
-
     background:
-        radial-gradient(circle at 50% 20%, #63145e, transparent 40%),
-        linear-gradient(#050509, #16051b);
+        radial-gradient(circle at center,
+        #3b1027 0%,
+        #14070d 45%,
+        #050505 100%);
+
+    position: relative;
 }
 
-.small-title {
-    letter-spacing: 4px;
-    color: #ff77aa;
+.netflix-logo {
+    font-size: 100px;
+    font-weight: 900;
+    color: #e50914;
+
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 0 40px rgba(229,9,20,0.5);
+}
+
+.intro-small {
+    letter-spacing: 6px;
+    color: #aaa;
     font-size: 12px;
     margin-bottom: 20px;
 }
 
-.birthday-title {
-    font-size: clamp(45px, 12vw, 90px);
-    line-height: 1;
-
-    animation: titleGlow 2s infinite alternate;
+.intro h1 {
+    font-size: clamp(45px, 9vw, 100px);
+    line-height: 0.9;
+    letter-spacing: -3px;
 }
 
-.birthday-title span {
-    display: block;
-
-    background: linear-gradient(
-        90deg,
-        #ff3d81,
-        #ff9bd0,
-        #c65cff
-    );
-
-    -webkit-background-clip: text;
-    color: transparent;
+.intro h1 span {
+    color: #e50914;
 }
 
-@keyframes titleGlow {
-    from {
-        text-shadow: 0 0 10px #ff3478;
-    }
+.watch-btn {
+    margin-top: 45px;
 
-    to {
-        text-shadow:
-            0 0 20px #ff3478,
-            0 0 50px #b82cff;
-    }
+    border: none;
+    padding: 16px 30px;
+
+    background: white;
+    color: black;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: 0.3s;
 }
 
-.subtitle {
-    color: #ccc;
-    margin: 25px 0;
+.watch-btn:hover {
+    background: #e50914;
+    color: white;
+    transform: scale(1.05);
 }
 
-.music-btn {
-    margin-top: 15px;
-}
-
-
-/* FLOATING HEARTS */
-
-.floating-heart {
+.intro-bottom {
     position: absolute;
+    bottom: 30px;
+    color: #777;
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-button {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+
+    z-index: 5000;
+
+    padding: 10px 16px;
+
+    border: 1px solid #444;
+    border-radius: 30px;
+
+    background: rgba(0,0,0,0.7);
+    color: white;
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+.password-screen {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #050505;
+}
+
+.password-box {
+    width: min(90%, 420px);
+
+    padding: 45px;
+
+    text-align: center;
+
+    background: #151515;
+
+    border-radius: 10px;
+
+    border: 1px solid #333;
+
+    box-shadow: 0 20px 80px rgba(229,9,20,0.15);
+}
+
+.lock {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.password-box h2 {
+    margin-bottom: 10px;
+}
+
+.password-box p {
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+.password-box input {
+    width: 100%;
+
+    padding: 15px;
+
+    background: #222;
+    color: white;
+
+    border: 1px solid #444;
+    border-radius: 5px;
+
+    outline: none;
+
+    margin-bottom: 15px;
+}
+
+.password-box button {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #e50914;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    font-weight: bold;
+}
+
+#passwordMessage {
+    margin-top: 15px;
+    color: #e50914;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    height: 90vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(90deg,
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.7) 45%,
+        rgba(0,0,0,0.2) 100%),
+        radial-gradient(circle at 80% 50%,
+        #65142c,
+        #10070a 60%);
+
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(0deg,
+        #080808,
+        transparent 25%);
+
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    padding: 8%;
+
+    max-width: 750px;
+}
+
+.netflix-tag {
+    color: #e50914;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(60px, 9vw, 120px);
+
+    line-height: 0.82;
+
+    letter-spacing: -5px;
+}
+
+.hero h1 span {
+    color: #e50914;
+}
+
+.hero h2 {
+    margin-top: 25px;
     font-size: 35px;
-
-    animation: floatHeart 5s infinite;
 }
 
-.heart2 {
-    left: 15%;
-    animation-delay: 1s;
+.typing {
+    color: #ccc;
+    font-size: 18px;
+    margin-top: 20px;
+    min-height: 25px;
 }
 
-.heart3 {
-    right: 15%;
-    animation-delay: 2s;
+.hero-buttons {
+    margin-top: 30px;
+
+    display: flex;
+    gap: 12px;
 }
 
-@keyframes floatHeart {
-    0% {
-        transform: translateY(100px);
-        opacity: 0;
-    }
+.hero-buttons button {
+    border: none;
 
-    50% {
-        opacity: 1;
-    }
+    padding: 13px 22px;
 
-    100% {
-        transform: translateY(-400px);
-        opacity: 0;
-    }
+    border-radius: 4px;
+
+    font-weight: bold;
+}
+
+.hero-buttons button:first-child {
+    background: white;
+    color: black;
+}
+
+.more-info {
+    background: rgba(100,100,100,0.5);
+    color: white;
 }
 
 
-/* COUNTDOWN */
+/* =========================
+   COUNTDOWN
+========================= */
 
 .countdown-section {
     padding: 80px 20px;
 
     text-align: center;
 
-    background: #09090f;
+    background: #0d0d0d;
+}
+
+.section-label {
+    color: #e50914;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
 }
 
 .countdown-section h2 {
-    margin-bottom: 35px;
+    font-size: 40px;
+    margin-bottom: 40px;
 }
 
 .countdown {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.time-box {
-    width: 75px;
-    height: 90px;
+.countdown div {
+    width: 110px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 20px 10px;
 
-    border-radius: 18px;
+    background: #171717;
 
-    background: linear-gradient(
-        145deg,
-        #171723,
-        #090910
-    );
+    border: 1px solid #292929;
 
-    border: 1px solid #333;
-
-    box-shadow: 0 0 20px rgba(255, 45, 120, .2);
+    border-radius: 5px;
 }
 
-.time-box span {
-    font-size: 28px;
+.countdown span {
+    display: block;
+
+    font-size: 40px;
     font-weight: bold;
-    color: #ff4c91;
 }
 
-.time-box small {
-    color: #aaa;
+.countdown small {
+    color: #888;
+    font-size: 10px;
 }
 
 
-/* MESSAGE */
+/* =========================
+   SECTIONS
+========================= */
 
-.message {
-    padding: 80px 20px;
+.section {
+    padding: 100px 7%;
 
+    background: #080808;
+}
+
+.section-heading {
+    margin-bottom: 45px;
+}
+
+.section-heading span {
+    color: #e50914;
+
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.section-heading h2 {
+    font-size: clamp(35px, 5vw, 60px);
+
+    margin: 10px 0;
+}
+
+.section-heading p {
+    color: #888;
+}
+
+
+/* =========================
+   INSTAGRAM
+========================= */
+
+.instagram-profile {
     display: flex;
-    justify-content: center;
-
-    background:
-        radial-gradient(circle, #28102f, #050509);
-}
-
-.card {
-    max-width: 600px;
-
-    padding: 40px 25px;
-
-    text-align: center;
-
-    border-radius: 25px;
-
-    background: rgba(255,255,255,.06);
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    backdrop-filter: blur(15px);
-
-    box-shadow: 0 0 40px rgba(255,40,130,.15);
-}
-
-.emoji {
-    font-size: 50px;
-    margin-bottom: 15px;
-}
-
-.card h2 {
-    margin-bottom: 20px;
-}
-
-.card p {
-    color: #ccc;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-
-.card h3 {
-    color: #ff6fa5;
-}
-
-
-/* GALLERY */
-
-.gallery-section {
-    padding: 80px 15px;
-
-    text-align: center;
-
-    background: #050509;
-}
-
-.gallery-section h2 {
-    margin-bottom: 35px;
-}
-
-.gallery {
-    max-width: 900px;
-    margin: auto;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    align-items: center;
 
     gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg,#e50914,#ff4d7d);
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.instagram-profile p {
+    color: #777;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 12px;
+
+    max-width: 1200px;
 }
 
 .memory-card {
-    background: #111118;
+    position: relative;
 
-    padding: 8px;
-
-    border-radius: 18px;
+    height: 360px;
 
     overflow: hidden;
 
-    transition: .3s;
-
-    border: 1px solid #252530;
+    background: #111;
 }
 
-.memory-card:hover {
-    transform: translateY(-8px) scale(1.02);
+.memory-card.large {
+    grid-row: span 2;
+    height: 732px;
 }
 
 .memory-card img {
     width: 100%;
-    height: 210px;
+    height: 100%;
 
     object-fit: cover;
 
-    border-radius: 13px;
+    transition: 0.6s;
 }
 
-.memory-card p {
-    padding: 12px 5px;
-    color: #ddd;
-    font-size: 14px;
+.memory-card:hover img {
+    transform: scale(1.08);
+}
+
+.memory-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent 40%,
+            rgba(0,0,0,0.9)
+        );
+}
+
+.memory-text {
+    position: absolute;
+
+    bottom: 20px;
+    left: 20px;
+
+    z-index: 2;
+}
+
+.memory-text span {
+    color: #e50914;
+    font-weight: bold;
+}
+
+.memory-text p {
+    margin-top: 6px;
 }
 
 
-/* FINAL */
+/* =========================
+   STORY
+========================= */
 
-.final {
-    min-height: 80vh;
+.story-section {
+    padding: 110px 7%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #111,
+            #080808
+        );
+}
+
+.timeline {
+    max-width: 850px;
+
+    margin: auto;
+
+    border-left: 2px solid #333;
+}
+
+.timeline-item {
+    position: relative;
+
+    padding: 0 0 70px 45px;
+}
+
+.timeline-dot {
+    position: absolute;
+
+    left: -18px;
+
+    width: 34px;
+    height: 34px;
 
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #e50914;
+
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.timeline-content small {
+    color: #e50914;
+    letter-spacing: 3px;
+}
+
+.timeline-content h3 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.timeline-content p {
+    color: #888;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   SPECIAL
+========================= */
+
+.special-section {
+    padding: 100px 7%;
+
+    background: #0d0d0d;
+}
+
+.special-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 15px;
+}
+
+.special-card {
+    background: #171717;
+
+    padding: 35px 25px;
+
+    border: 1px solid #252525;
+
+    transition: 0.3s;
+}
+
+.special-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #e50914;
+}
+
+.special-card div {
+    font-size: 45px;
+}
+
+.special-card h3 {
+    margin: 20px 0 10px;
+}
+
+.special-card p {
+    color: #888;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message-section {
+    padding: 120px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #30101c,
+            #080808 65%
+        );
+}
+
+.message-container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.message-container > span {
+    color: #e50914;
+    letter-spacing: 4px;
+    font-size: 12px;
+}
+
+.message-container h2 {
+    font-size: clamp(45px, 7vw, 80px);
+
+    margin: 15px 0 45px;
+
+    line-height: 0.9;
+}
+
+.message-container h2 strong {
+    color: #e50914;
+}
+
+.letter {
+    color: #ccc;
+
+    font-size: 19px;
+
+    line-height: 2;
+}
+
+.letter p {
+    margin-bottom: 22px;
+}
+
+.highlight {
+    color: white;
+
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.signature {
+    color: #e50914;
+    font-weight: bold;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final-section {
+    min-height: 90vh;
+
+    display: flex;
     justify-content: center;
     align-items: center;
 
     text-align: center;
 
-    padding: 30px;
+    padding: 50px 20px;
 
     background:
-        radial-gradient(circle at center, #65134d, #080009);
+        radial-gradient(
+            circle,
+            #4a0e22,
+            #080808 65%
+        );
 }
 
-.final h1 {
-    font-size: clamp(38px, 10vw, 75px);
+.final-heart {
+    font-size: 90px;
 
-    background: linear-gradient(
-        90deg,
-        #ff4b91,
-        #ffd0e2,
-        #b94dff
-    );
-
-    -webkit-background-clip: text;
-    color: transparent;
-
-    animation: titleGlow 2s infinite alternate;
+    animation: heartbeat 1s infinite;
 }
 
-.final p {
-    color: #ddd;
-    margin: 15px;
+.final-content > p:first-of-type {
+    color: #e50914;
+
+    letter-spacing: 4px;
+
+    font-size: 11px;
+
+    margin: 25px 0;
 }
 
-.big-love {
+.final-content h1 {
+    font-size: clamp(45px, 8vw, 90px);
+
+    line-height: 0.95;
+}
+
+.final-subtitle {
+    color: #aaa;
+
     font-size: 18px;
+
+    margin: 30px auto;
+
+    max-width: 500px;
 }
 
-.final button {
-    margin-top: 20px;
+.final-content button {
+    padding: 15px 30px;
+
+    background: #e50914;
+    color: white;
+
+    border: none;
+
+    font-weight: bold;
+
+    border-radius: 4px;
 }
 
 
-/* CONFETTI */
+/* =========================
+   FOOTER
+========================= */
 
-#confetti {
+footer {
+    padding: 35px;
+
+    text-align: center;
+
+    background: #050505;
+
+    color: #777;
+}
+
+footer small {
+    display: block;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particle {
     position: fixed;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
 
     pointer-events: none;
 
-    z-index: 10000;
+    color: #e50914;
+
+    opacity: 0.5;
+
+    z-index: 1;
+
+    animation: float 7s linear forwards;
 }
 
 
-/* MOBILE */
+/* =========================
+   CONFETTI
+========================= */
 
-@media(max-width:600px) {
+.confetti {
+    position: fixed;
 
-    #openingScreen h1 {
+    top: -20px;
+
+    z-index: 9999;
+
+    font-size: 25px;
+
+    animation: fall 4s linear forwards;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes heartbeat {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+}
+
+@keyframes float {
+
+    from {
+        transform: translateY(100vh) rotate(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    to {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+@keyframes fall {
+
+    from {
+        transform: translateY(0) rotate(0);
+    }
+
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 800px) {
+
+    .hero-content {
+        padding: 30px;
+    }
+
+    .hero h1 {
+        font-size: 65px;
+    }
+
+    .countdown {
+        gap: 7px;
+    }
+
+    .countdown div {
+        width: 75px;
+        padding: 15px 5px;
+    }
+
+    .countdown span {
         font-size: 28px;
     }
 
-    .birthday-title {
-        font-size: 48px;
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .memory-card {
+        height: 250px;
+    }
+
+    .memory-card.large {
+        height: 512px;
+    }
+
+    .special-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media(max-width: 500px) {
+
+    .intro h1 {
+        font-size: 55px;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 200px;
+    }
+
+    .countdown-section h2 {
+        font-size: 30px;
+    }
+
+    .countdown span {
+        font-size: 22px;
+    }
+
+    .countdown small {
+        font-size: 8px;
     }
 
     .gallery {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
-    .memory-card img {
-        height: 190px;
+    .memory-card,
+    .memory-card.large {
+        height: 400px;
     }
+
+    .special-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .letter {
+        font-size: 17px;
+    }
+
 }
