@@ -1,258 +1,965 @@
-/* OPEN SURPRISE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-function openSurprise() {
+html {
+    scroll-behavior: smooth;
+}
 
-    document.getElementById("openingScreen")
-        .classList.add("hide");
+body {
+    background: #080808;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
 
-    setTimeout(() => {
-        document.getElementById("openingScreen")
-            .style.display = "none";
-    }, 1000);
-
-    celebrate();
-
-    const song = document.getElementById("birthdaySong");
-
-    song.play().catch(() => {});
-
+button {
+    font-family: inherit;
+    cursor: pointer;
 }
 
 
-/* MUSIC */
+/* =========================
+   INTRO
+========================= */
 
-function toggleMusic() {
+.intro {
+    height: 100vh;
 
-    const song = document.getElementById("birthdaySong");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    if (song.paused) {
+    text-align: center;
 
-        song.play();
+    background:
+        radial-gradient(circle at center,
+        #3b1027 0%,
+        #14070d 45%,
+        #050505 100%);
 
-    } else {
+    position: relative;
+}
 
-        song.pause();
+.netflix-logo {
+    font-size: 100px;
+    font-weight: 900;
+    color: #e50914;
 
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 0 40px rgba(229,9,20,0.5);
+}
+
+.intro-small {
+    letter-spacing: 6px;
+    color: #aaa;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.intro h1 {
+    font-size: clamp(45px, 9vw, 100px);
+    line-height: 0.9;
+    letter-spacing: -3px;
+}
+
+.intro h1 span {
+    color: #e50914;
+}
+
+.watch-btn {
+    margin-top: 45px;
+
+    border: none;
+    padding: 16px 30px;
+
+    background: white;
+    color: black;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.watch-btn:hover {
+    background: #e50914;
+    color: white;
+    transform: scale(1.05);
+}
+
+.intro-bottom {
+    position: absolute;
+    bottom: 30px;
+    color: #777;
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-button {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+
+    z-index: 5000;
+
+    padding: 10px 16px;
+
+    border: 1px solid #444;
+    border-radius: 30px;
+
+    background: rgba(0,0,0,0.7);
+    color: white;
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+.password-screen {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #050505;
+}
+
+.password-box {
+    width: min(90%, 420px);
+
+    padding: 45px;
+
+    text-align: center;
+
+    background: #151515;
+
+    border-radius: 10px;
+
+    border: 1px solid #333;
+
+    box-shadow: 0 20px 80px rgba(229,9,20,0.15);
+}
+
+.lock {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.password-box h2 {
+    margin-bottom: 10px;
+}
+
+.password-box p {
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+.password-box input {
+    width: 100%;
+
+    padding: 15px;
+
+    background: #222;
+    color: white;
+
+    border: 1px solid #444;
+    border-radius: 5px;
+
+    outline: none;
+
+    margin-bottom: 15px;
+}
+
+.password-box button {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #e50914;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    font-weight: bold;
+}
+
+#passwordMessage {
+    margin-top: 15px;
+    color: #e50914;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    height: 90vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(90deg,
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.7) 45%,
+        rgba(0,0,0,0.2) 100%),
+        radial-gradient(circle at 80% 50%,
+        #65142c,
+        #10070a 60%);
+
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(0deg,
+        #080808,
+        transparent 25%);
+
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    padding: 8%;
+
+    max-width: 750px;
+}
+
+.netflix-tag {
+    color: #e50914;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(60px, 9vw, 120px);
+
+    line-height: 0.82;
+
+    letter-spacing: -5px;
+}
+
+.hero h1 span {
+    color: #e50914;
+}
+
+.hero h2 {
+    margin-top: 25px;
+    font-size: 35px;
+}
+
+.typing {
+    color: #ccc;
+    font-size: 18px;
+    margin-top: 20px;
+    min-height: 25px;
+}
+
+.hero-buttons {
+    margin-top: 30px;
+
+    display: flex;
+    gap: 12px;
+}
+
+.hero-buttons button {
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 4px;
+
+    font-weight: bold;
+}
+
+.hero-buttons button:first-child {
+    background: white;
+    color: black;
+}
+
+.more-info {
+    background: rgba(100,100,100,0.5);
+    color: white;
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-section {
+    padding: 80px 20px;
+
+    text-align: center;
+
+    background: #0d0d0d;
+}
+
+.section-label {
+    color: #e50914;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.countdown-section h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.countdown div {
+    width: 110px;
+
+    padding: 20px 10px;
+
+    background: #171717;
+
+    border: 1px solid #292929;
+
+    border-radius: 5px;
+}
+
+.countdown span {
+    display: block;
+
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.countdown small {
+    color: #888;
+    font-size: 10px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    padding: 100px 7%;
+
+    background: #080808;
+}
+
+.section-heading {
+    margin-bottom: 45px;
+}
+
+.section-heading span {
+    color: #e50914;
+
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.section-heading h2 {
+    font-size: clamp(35px, 5vw, 60px);
+
+    margin: 10px 0;
+}
+
+.section-heading p {
+    color: #888;
+}
+
+
+/* =========================
+   INSTAGRAM
+========================= */
+
+.instagram-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg,#e50914,#ff4d7d);
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.instagram-profile p {
+    color: #777;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 12px;
+
+    max-width: 1200px;
+}
+
+.memory-card {
+    position: relative;
+
+    height: 360px;
+
+    overflow: hidden;
+
+    background: #111;
+}
+
+.memory-card.large {
+    grid-row: span 2;
+    height: 732px;
+}
+
+.memory-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: 0.6s;
+}
+
+.memory-card:hover img {
+    transform: scale(1.08);
+}
+
+.memory-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent 40%,
+            rgba(0,0,0,0.9)
+        );
+}
+
+.memory-text {
+    position: absolute;
+
+    bottom: 20px;
+    left: 20px;
+
+    z-index: 2;
+}
+
+.memory-text span {
+    color: #e50914;
+    font-weight: bold;
+}
+
+.memory-text p {
+    margin-top: 6px;
+}
+
+
+/* =========================
+   STORY
+========================= */
+
+.story-section {
+    padding: 110px 7%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #111,
+            #080808
+        );
+}
+
+.timeline {
+    max-width: 850px;
+
+    margin: auto;
+
+    border-left: 2px solid #333;
+}
+
+.timeline-item {
+    position: relative;
+
+    padding: 0 0 70px 45px;
+}
+
+.timeline-dot {
+    position: absolute;
+
+    left: -18px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #e50914;
+
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.timeline-content small {
+    color: #e50914;
+    letter-spacing: 3px;
+}
+
+.timeline-content h3 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.timeline-content p {
+    color: #888;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   SPECIAL
+========================= */
+
+.special-section {
+    padding: 100px 7%;
+
+    background: #0d0d0d;
+}
+
+.special-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 15px;
+}
+
+.special-card {
+    background: #171717;
+
+    padding: 35px 25px;
+
+    border: 1px solid #252525;
+
+    transition: 0.3s;
+}
+
+.special-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #e50914;
+}
+
+.special-card div {
+    font-size: 45px;
+}
+
+.special-card h3 {
+    margin: 20px 0 10px;
+}
+
+.special-card p {
+    color: #888;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message-section {
+    padding: 120px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #30101c,
+            #080808 65%
+        );
+}
+
+.message-container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.message-container > span {
+    color: #e50914;
+    letter-spacing: 4px;
+    font-size: 12px;
+}
+
+.message-container h2 {
+    font-size: clamp(45px, 7vw, 80px);
+
+    margin: 15px 0 45px;
+
+    line-height: 0.9;
+}
+
+.message-container h2 strong {
+    color: #e50914;
+}
+
+.letter {
+    color: #ccc;
+
+    font-size: 19px;
+
+    line-height: 2;
+}
+
+.letter p {
+    margin-bottom: 22px;
+}
+
+.highlight {
+    color: white;
+
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.signature {
+    color: #e50914;
+    font-weight: bold;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final-section {
+    min-height: 90vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background:
+        radial-gradient(
+            circle,
+            #4a0e22,
+            #080808 65%
+        );
+}
+
+.final-heart {
+    font-size: 90px;
+
+    animation: heartbeat 1s infinite;
+}
+
+.final-content > p:first-of-type {
+    color: #e50914;
+
+    letter-spacing: 4px;
+
+    font-size: 11px;
+
+    margin: 25px 0;
+}
+
+.final-content h1 {
+    font-size: clamp(45px, 8vw, 90px);
+
+    line-height: 0.95;
+}
+
+.final-subtitle {
+    color: #aaa;
+
+    font-size: 18px;
+
+    margin: 30px auto;
+
+    max-width: 500px;
+}
+
+.final-content button {
+    padding: 15px 30px;
+
+    background: #e50914;
+    color: white;
+
+    border: none;
+
+    font-weight: bold;
+
+    border-radius: 4px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 35px;
+
+    text-align: center;
+
+    background: #050505;
+
+    color: #777;
+}
+
+footer small {
+    display: block;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particle {
+    position: fixed;
+
+    pointer-events: none;
+
+    color: #e50914;
+
+    opacity: 0.5;
+
+    z-index: 1;
+
+    animation: float 7s linear forwards;
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti {
+    position: fixed;
+
+    top: -20px;
+
+    z-index: 9999;
+
+    font-size: 25px;
+
+    animation: fall 4s linear forwards;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes heartbeat {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+}
+
+@keyframes float {
+
+    from {
+        transform: translateY(100vh) rotate(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    to {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+@keyframes fall {
+
+    from {
+        transform: translateY(0) rotate(0);
+    }
+
+    to {
+        transform: translateY(110vh) rotate(720deg);
     }
 
 }
 
 
-/* COUNTDOWN */
+/* =========================
+   MOBILE
+========================= */
 
-/*
-   Birthday date:
-   25 October 2026
+@media(max-width: 800px) {
 
-   जर तुझा birthday वेगळ्या date ला असेल
-   तर फक्त ही date बदल.
-*/
-
-const birthdayDate =
-    new Date("October 13, 2026 00:00:00").getTime();
-
-
-function updateCountdown() {
-
-    const now = new Date().getTime();
-
-    const distance = birthdayDate - now;
-
-
-    if (distance <= 0) {
-
-        document.getElementById("days").innerHTML = "00";
-        document.getElementById("hours").innerHTML = "00";
-        document.getElementById("minutes").innerHTML = "00";
-        document.getElementById("seconds").innerHTML = "00";
-
-        celebrate();
-
-        return;
+    .hero-content {
+        padding: 30px;
     }
 
+    .hero h1 {
+        font-size: 65px;
+    }
 
-    const days =
-        Math.floor(distance / (1000 * 60 * 60 * 24));
+    .countdown {
+        gap: 7px;
+    }
 
-    const hours =
-        Math.floor(
-            (distance % (1000 * 60 * 60 * 24))
-            / (1000 * 60 * 60)
-        );
+    .countdown div {
+        width: 75px;
+        padding: 15px 5px;
+    }
 
-    const minutes =
-        Math.floor(
-            (distance % (1000 * 60 * 60))
-            / (1000 * 60)
-        );
+    .countdown span {
+        font-size: 28px;
+    }
 
-    const seconds =
-        Math.floor(
-            (distance % (1000 * 60))
-            / 1000
-        );
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+    }
 
+    .memory-card {
+        height: 250px;
+    }
 
-    document.getElementById("days").innerHTML =
-        String(days).padStart(2, "0");
+    .memory-card.large {
+        height: 512px;
+    }
 
-    document.getElementById("hours").innerHTML =
-        String(hours).padStart(2, "0");
+    .special-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 
-    document.getElementById("minutes").innerHTML =
-        String(minutes).padStart(2, "0");
-
-    document.getElementById("seconds").innerHTML =
-        String(seconds).padStart(2, "0");
 }
 
+@media(max-width: 500px) {
 
-setInterval(updateCountdown, 1000);
-
-updateCountdown();
-
-
-/* CONFETTI */
-
-function celebrate() {
-
-    const canvas =
-        document.getElementById("confetti");
-
-    const ctx = canvas.getContext("2d");
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-
-    const pieces = [];
-
-    for (let i = 0; i < 180; i++) {
-
-        pieces.push({
-
-            x: Math.random() * canvas.width,
-
-            y: -20,
-
-            size: Math.random() * 8 + 4,
-
-            speed: Math.random() * 5 + 3,
-
-            rotation: Math.random() * 360,
-
-            rotationSpeed:
-                Math.random() * 8 - 4
-
-        });
-
+    .intro h1 {
+        font-size: 55px;
     }
 
+    .hero h1 {
+        font-size: 55px;
+    }
 
-    let frame = 0;
+    .hero h2 {
+        font-size: 28px;
+    }
 
+    .hero-buttons {
+        flex-direction: column;
+        width: 200px;
+    }
 
-    function animate() {
+    .countdown-section h2 {
+        font-size: 30px;
+    }
 
-        ctx.clearRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
+    .countdown span {
+        font-size: 22px;
+    }
 
+    .countdown small {
+        font-size: 8px;
+    }
 
-        pieces.forEach(piece => {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
 
-            piece.y += piece.speed;
+    .memory-card,
+    .memory-card.large {
+        height: 400px;
+    }
 
-            piece.rotation +=
-                piece.rotationSpeed;
+    .special-grid {
+        grid-template-columns: 1fr;
+    }
 
-
-            ctx.save();
-
-            ctx.translate(
-                piece.x,
-                piece.y
-            );
-
-            ctx.rotate(
-                piece.rotation *
-                Math.PI / 180
-            );
-
-
-            const colors = [
-                "#ff3d81",
-                "#ffd166",
-                "#7c5cff",
-                "#00e5ff",
-                "#ffffff"
-            ];
-
-            ctx.fillStyle =
-                colors[
-                    Math.floor(
-                        Math.random() *
-                        colors.length
-                    )
-                ];
-
-
-            ctx.fillRect(
-                -piece.size / 2,
-                -piece.size / 2,
-                piece.size,
-                piece.size * 1.8
-            );
-
-
-            ctx.restore();
-
-        });
-
-
-        frame++;
-
-
-        if (frame < 300) {
-
-            requestAnimationFrame(animate);
-
-        } else {
-
-            ctx.clearRect(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
+    .letter {
+        font-size: 17px;
+    }
 
         }
-
-    }
-
-
-    animate();
-}
-
-
-/* SCREEN RESIZE */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        const canvas =
-            document.getElementById("confetti");
-
-        canvas.width =
-            window.innerWidth;
-
-        canvas.height =
-            window.innerHeight;
-
-    }
-);
