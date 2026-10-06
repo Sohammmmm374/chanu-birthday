@@ -74,6 +74,10 @@ function checkPassword() {
         passwordScreen.classList.add("hidden");
 
         main.classList.remove("hidden");
+       window.scrollTo({
+    top: 0,
+    behavior: "instant"
+});
 
         startWebsite();
 
