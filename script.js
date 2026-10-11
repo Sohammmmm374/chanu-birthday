@@ -90,7 +90,6 @@ function checkPassword() {
 
 
 /* ENTER KEY PASSWORD */
-
 document
     .getElementById("passwordInput")
     .addEventListener("keydown", function(event) {
@@ -196,10 +195,8 @@ function updateCountdown() {
 
         return;
 
-    }
-
-
-    const days =
+                              }
+   const days =
         Math.floor(
             distance /
             (1000 * 60 * 60 * 24)
