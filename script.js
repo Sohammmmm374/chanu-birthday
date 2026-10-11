@@ -10,9 +10,9 @@ const SECRET_PASSWORD = "chanu";
    CHANGE THIS DATE
 
    Example:
-   If birthday is 25 October 2026:
+   If birthday is 13 October 2026:
 
-   new Date("October 25, 2026 00:00:00")
+   new Date("October 13, 2026 00:00:00")
 
    Change the date below to Chanu's actual birthday.
 */
@@ -74,18 +74,8 @@ function checkPassword() {
         passwordScreen.classList.add("hidden");
 
         main.classList.remove("hidden");
-       window.scrollTo({
-    top: 0,
-    behavior: "instant"
-});
 
         startWebsite();
-
-setTimeout(() => {
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-}, 100);
 
     } else {
 
