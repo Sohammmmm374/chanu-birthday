@@ -73,10 +73,19 @@ function checkPassword() {
 
         passwordScreen.classList.add("hidden");
 
-        main.classList.remove("hidden");
+main.classList.remove("hidden");
 
-        startWebsite();
+window.scrollTo(0, 0);
 
+startWebsite();
+
+requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+});
+
+setTimeout(() => {
+    window.scrollTo(0, 0);
+}, 300);
     } else {
 
         message.innerHTML =
